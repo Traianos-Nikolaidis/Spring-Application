@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+    <head>
+        <title>View Users</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+			$(document).ready(
+				function(){
+					$.getJSON("http://localhost:8080/all", function(result){
+						$.each(result, function(key, value){
+							$("#user").append("<p  id=" + value.id +">" + value.name + " " + value.surname + "</p>");
+								
+						});
+					});
+				});
+
+			$(document).ready ( function () {
+			    $(document).on ("mouseover", "p", function () {
+			    	$.getJSON("http://localhost:8080/unique?newid="+this.id, function(value){			 
+							$("#newdiv").html("<br><br><br><br><br>" + 
+											  "<br>ID: " + value.id + 
+											  "<br>Name: " + value.name + 
+											  "<br>Surname: " + value.surname + 
+											  "<br>Email: " + value.email + 
+											  "<br>Date of birth: " + value.date + 
+											  "<br>Gender: " + value.gender + 
+											  "<br>Home Address: " + value.ha + 
+											  "<br>Work Address: " + value.wa);						
+						
+			    	});		
+			    });
+			});
+		</script>
+    </head>
+    <body style="background-color: #add8e6; text-align:center;" >
+        <div id="user" ></div>
+    	<div id="newdiv" ></div>
+    </body>
+</html>

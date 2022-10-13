@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+ 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ 	<script>
+ 	$( function() {
+		$( "#datepicker" ).datepicker({
+		dateFormat: 'dd/mm/yy'});
+	} );
+	</script>
+</head>
+<body style="background-color: #add8e6; text-align:center;" >
+	<h1>Register</h1>
+    <form action="#" th:action="@{/add}" th:object="${user}" method="post">
+        <p>Name: <input required type="text" th:field="*{name}" /></p>
+        <p>Surname: <input  type="text" th:field="*{surname}" /></p>
+        <p>Email: <input  required type="email" th:field="*{email}" /></p>
+        <p>Gender: <select required th:field="*{gender}" >
+        	<option value="male">Male</option>
+        	<option value="female">Female</option>
+        </select> </p>
+        <p>Date of birth: <input required type="text" id="datepicker" th:field="*{date}" ></p>
+		<p>Home Address: <textarea th:field="*{ha}" ></textarea></p>
+		<p>Work Address: <textarea th:field="*{wa}" ></textarea></p>
+        <p><input type="submit" value="Submit" /> </p>
+    </form>
+</body>
+</html>
